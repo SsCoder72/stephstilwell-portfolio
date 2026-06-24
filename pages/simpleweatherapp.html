@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Weather App</title>
+    <style>
+        html {
+            /* Ensures the HTML container spans the full height of the device screen */
+            min-height: 100vh;
+        }
+
+
+
+        body {
+            padding: 20px;
+            box-sizing: border-box;
+            /* Removes the browser's default white margins around the page */
+            margin: 0;
+
+            /* Ensures the body spans the full height of the HTML container */
+            min-height: 100vh;
+
+            /* Applies your color gradient */
+            background: radial-gradient(circle at 48.7% 44.3%, rgb(30, 144, 231) 0%, rgb(56, 113, 209) 22.9%, rgb(38, 76, 140) 76.7%, rgb(31, 63, 116) 100.2%);
+
+            /* Stops the gradient from tiling and creating hard line breaks */
+            background-repeat: no-repeat;
+
+        }
+
+        h2 {
+            text-align: center;
+            font-family: courier;
+
+        }
+
+        .weather-app-container {
+            display: block;
+            margin: auto;
+            margin-top: 25px;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            min-height: 460px;
+            box-sizing: border-box;
+            background: radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(64, 64, 64) 90.2%);
+            border-radius: 7px;
+            border: 25px solid rgb(147, 65, 210);
+        }
+
+        .output-container {
+            display: block;
+            margin: auto;
+            background: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
+            width: 90%;
+            max-width: 300px;
+            height: 200px;
+            border-radius: 7px;
+            text-align: center;
+            padding: 10px;
+            padding-top: 40px;
+            box-sizing: border-box;
+
+
+
+        }
+
+        ::placeholder {
+            font-family: courier;
+            color: black;
+
+
+        }
+
+        input {
+            margin-top: 25px;
+            width: 100%;
+            max-width: 200px;
+            height: 40px;
+            background-color: rgb(200, 135, 216);
+            border-radius: 3px;
+            border: none;
+            font-family: courier;
+            font-size: 15px;
+            box-sizing: border-box;
+            padding-left: 10px;
+        }
+
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px rgb(200, 135, 216);
+        }
+
+        button {
+            height: 40px;
+            margin-top: 25px;
+            font-family: courier;
+        }
+
+
+        #searchcity {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+            margin-left: 0;
+            gap: 5px;
+            padding: 5px;
+            font-size: 15px;
+
+        }
+
+
+        hr {
+            color: blue;
+            margin: 25px;
+
+        }
+
+
+        .daily-current-temp {
+            color: rgb(200, 135, 216);
+            font-size: 18px;
+            font-weight: bold;
+            font-family: verdana;
+
+        }
+
+        #city-name {
+            color: rgb(200, 135, 216);
+            font-size: 18px;
+            font-weight: bold;
+            font-family: verdana;
+        }
+
+        #high-temp {
+            color: rgb(200, 135, 216);
+            font-size: 18px;
+            font-weight: bold;
+            font-family: verdana;
+        }
+
+        #low-temp {
+            color: rgb(200, 135, 216);
+            font-size: 18px;
+            font-weight: bold;
+            font-family: verdana;
+        }
+
+        #weather-description {
+            color: rgb(200, 135, 216);
+            font-size: 18px;
+            font-weight: bold;
+            font-family: verdana;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .weather-app-container {
+                border-width: 12px;
+                margin-top: 10px;
+            }
+
+            .output-container {
+                padding-top: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Steph's Weather App</h2>
+
+    <div class="weather-app-container">
+
+        <div id="searchcity">
+            <input type="text" placeholder="Enter city...">
+            <button>Search</button>
+        </div>
+
+
+
+        <hr>
+
+
+        <div class="output-container">
+            <div class="city-name" id="city-name"></div>
+            <div class="daily-current-temp" id="current-temp"></div>
+            <div class="high-temp" id="high-temp"></div>
+            <div class="low-temp" id="low-temp"></div>
+            <div class="weather-description" id="weather-description"></div>
+        </div>
+    </div>
+
+    <script>
+
+        const searchcity = document.getElementById("searchcity");
+        const input = document.querySelector("input");
+        const buttons = document.querySelector("button");
+        const cityName = document.getElementById("city-name");
+        const currentTemp = document.getElementById("current-temp");
+        const highTemp = document.getElementById("high-temp");
+        const lowTemp = document.getElementById("low-temp");
+        const weatherDescription = document.getElementById("weather-description");
+
+
+        buttons.addEventListener("click", function () {
+            const city = input.value;
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c00582d09f58f78b1239cd6f703de83f`)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    console.log(data);
+                    cityName.innerText = data.name;
+                    currentTemp.innerText = Math.round((data.main.temp - 273.15) * 9 / 5 + 32) + "°F";
+                    highTemp.innerText = "H: " + Math.round((data.main.temp_max - 273.15) * 9 / 5 + 32) + "°F";
+                    lowTemp.innerText = "L: " + Math.round((data.main.temp_min - 273.15) * 9 / 5 + 32) + "°F";
+                    weatherDescription.innerText = data.weather[0].description;
+
+
+
+
+                });
+        });
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

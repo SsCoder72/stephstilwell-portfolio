@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <style>
+        img {
+            display: block;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <img id="myImage" src="../images/pic_bulboff.gif" style="width:100px">
+
+    <div class="buttons">
+        <button id="onButton">Turn on the light</button>
+        <button id="offButton">Turn off the light</button>
+    </div>
+
+
+
+    <script>
+        document.getElementById("onButton").onclick = function () {
+            document.getElementById("myImage").src = "../images/pic_bulbon.gif";
+        }
+
+        document.getElementById("offButton").onclick = function () {
+            document.getElementById("myImage").src = "../images/pic_bulboff.gif";
+        }
+    </script>
+
+
+</body>
+
+</html>

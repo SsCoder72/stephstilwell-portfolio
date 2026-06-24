@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Home</title>
+
+</head>
+
+
+<body>
+    <header>
+        <div class="header-top">
+            <h1 class="myname">Stephanie Stilwell</h1>
+        </div>
+        <div class="img-container">
+            <img src="images/codingpic.jpeg" alt="Coding Pic" id="codingpic">
+        </div>
+        <p class="mytitles">Web Developer and Tech Savvy Professional</p>
+    </header>
+
+    <main>
+        <div class="main-content">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pages/about.html">About</a></li>
+                    <li><a href="pages/projects.html">Projects/Experience</a></li>
+                    <li><a href="pages/contact.html">Contact</a></li>
+
+                </ul>
+            </nav>
+            <div class="code-window">
+                <div class="code-titlebar">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                </div>
+                <div class="code-body">
+                    <pre id="code-output"></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer>
+        <p class="footertext">
+            STEPHANIE STILWELL | SAN FRANCISCO, CA | (415) 741-4873 | stephmstilwell@gmail.com
+        </p>
+
+    </footer>
+
+    <script>
+        const lines = [
+            '<!DOCTYPE html>',
+            '<html lang="en">',
+            '<head>',
+            '    <meta charset="UTF-8">',
+            '    <meta name="viewport"',
+            '      content="width=device-width">',
+            '    <title>Portfolio</title>',
+            '</head>',
+            '<body>',
+            '    <header>',
+            '        <h1>Stephanie</h1>',
+            '    </header>',
+        ];
+
+        const output = document.getElementById('code-output');
+        let lineIndex = 0;
+        let charIndex = 0;
+        let typedLines = [];
+
+        function type() {
+            if (lineIndex < lines.length) {
+                const currentLine = lines[lineIndex];
+                if (charIndex <= currentLine.length) {
+                    output.textContent = [...typedLines, currentLine.substring(0, charIndex)].join('\n');
+                    charIndex++;
+                    setTimeout(type, 50);
+                } else {
+                    typedLines.push(currentLine);
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(type, 50);
+                }
+            } else {
+                setTimeout(restart, 1500);
+            }
+        }
+
+        function restart() {
+            lineIndex = 0;
+            charIndex = 0;
+            typedLines = [];
+            output.textContent = '';
+            type();
+        }
+
+        type();
+    </script>
+
+
+
+</body>
+
+</html>

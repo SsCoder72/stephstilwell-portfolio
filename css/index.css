@@ -339,6 +339,20 @@ footer {
     
 }
 
+#mywebsitelink {
+    color: rgb(72, 200, 160);   /* your teal-green, so it pops as the featured one */
+    font-weight: bold;
+    font-size: 30px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 4px #fff, 0 0 4px #fff, 0 0 8px #fff;
+}
+
+#mywebsitelink:hover {
+    color: #faf6e9;
+    transform: scale(1.2);
+    
+}
+
 #jspp-title {
     position: absolute;      /* floats on top of the image */
     top: 400px;               /* nudge down from the top */

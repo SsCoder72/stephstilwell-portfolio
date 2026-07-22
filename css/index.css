@@ -185,13 +185,9 @@ footer {
 }
 
 
-#featuredproject{
-    color:gray;
-    font-family: 'Mozilla Text', sans-serif;
-    letter-spacing:4px;
-    font-size:25px;
-}
 
+
+#featuredproject
 #projectstitle{
     color:gray;
     font-family: 'Mozilla Text', sans-serif;

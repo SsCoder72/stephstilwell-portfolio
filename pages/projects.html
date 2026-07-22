@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/index.css">
+   <script src="../script/projects.js" defer></script>
     <title>Projects/Experience</title>
 </head>
 
@@ -46,7 +47,7 @@
 
                 <ul>
 
-                    <li id="projectstitle">Featured Project</li>
+                    <li id="featuredproject">Featured Project</li>
                     <li><a id=mywebsitelink href="https://www.thewellnessoflight.com" target="_blank">My Website</a></li>
                     <li id="projectstitle">Practice Projects</li>
                     <li><a href="../pages/lightbulboffon.html" target="_blank">Simple Lightbulb-On/Off</a></li>
@@ -119,16 +120,7 @@
 
     </footer>
 
-    <script>
-        const toggles = document.querySelectorAll('.skills-toggle');
-
-        toggles.forEach(function (toggle) {
-            toggle.addEventListener('click', function () {
-                const list = toggle.nextElementSibling;
-                list.classList.toggle('open');
-            });
-        });
-    </script>
+   
 
 
 </body>
